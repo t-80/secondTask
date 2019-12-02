@@ -1,17 +1,32 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-title',
   templateUrl: './title.component.html',
   styleUrls: ['./title.component.css']
 })
-export class TitleComponent implements OnInit {
+export class TitleComponent implements OnInit, OnChanges {
 
-  @Input () titleProperty: string
+  @Input() titleProperty: string
+
+  @Input() isRunning: boolean
+
+  @Output() isRunningOut = new EventEmitter<boolean>()
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges) {
+    const runningChanges = changes['isRunning'];
+    // console.log(this.isRunning);
+    // console.log(runningChanges);
+    if(runningChanges.currentValue) {
+      console.log(runningChanges.currentValue);
+      // console.log(this.isRunning);
+      // this.isRunningOut.emit(this.isRunning);
+
+    }
   }
 
+  ngOnInit() {
+  }
 }

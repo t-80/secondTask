@@ -8,41 +8,51 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'secondTask';
 
-  interval: number = -1;
+  isRunningOut: boolean;
+
+  timeLeft: number = 5;
   isRunning: boolean = false;
   buttonText: string = "Start";
+  interval;
 
-  titleProperty: string = "Title"
+  titleProperty: string = "Title";
 
-  timer(){
-    this.isRunning ? this.start() : this.pause()
+  timer() {
+    if (this.isRunning) {
+      this.pauseTimer();
+    } else {
+      this.timeLeft === 0 ? this.resetTimer() : this.startTimer();
+    }
   }
 
-  start(){
-    this.buttonText = "Pause";
-    this.setInterval();
+  startTimer() {
     this.isRunning = true;
-    while (this.interval > 0 && this.isRunning){
-      this.oneSecondTimeout();
-      this.interval -= 1;
-    }
+    this.buttonText = "Pause";
+    this.interval = setInterval(() => {
+      if (this.timeLeft > 0) {
+        this.timeLeft--;
+      }
+      else {
+        this.buttonText = "Reset";
+        this.isRunning = false;
+      }
+    }, 1000)
   }
-  
-  pause(){
+
+  pauseTimer() {
     this.isRunning = false;
+    this.buttonText = "Start";
+    clearInterval(this.interval);
   }
 
-  private setInterval(){
-    this.interval = 10;
+  resetTimer() {
+    clearInterval(this.interval);
+    this.timeLeft = 10;
+    this.buttonText = "Start";
   }
 
-  clearInterval(){
-    this.interval = -1;
+  magic(inpu : boolean){
+    // console.log(inpu);
   }
-
-  oneSecondTimeout() {
-    setTimeout (() => {
-      }, 1000);
-    }
 }
 

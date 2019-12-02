@@ -1,7 +1,17 @@
-<app-title [titleProperty]="titleProperty"></app-title>
+<app-title 
+[titleProperty]="titleProperty"
+[isRunning]="isRunning"
+(isRunningOut)='magic($event)'
+></app-title>
 
-<app-message [interval]="interval"></app-message>
+<app-message [timeLeft]="timeLeft"></app-message>
 
 <button (click) = timer()>{{ buttonText }}</button>
 
-<input>{{ interval }}</input>
+<br/>
+
+<label>{{ timeLeft }}</label>
+
+<br/>
+
+<app-hidden *ngIf="something"></app-hidden>
