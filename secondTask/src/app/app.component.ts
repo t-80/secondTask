@@ -17,6 +17,8 @@ export class AppComponent {
 
   titleProperty: string = "Title";
 
+  something: boolean = false;
+
   timer() {
     if (this.isRunning) {
       this.pauseTimer();
@@ -52,7 +54,8 @@ export class AppComponent {
   }
 
   magic(inpu : boolean){
-    // console.log(inpu);
+    this.something = inpu;
+     console.log(inpu);
   }
 }
 

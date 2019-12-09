@@ -17,14 +17,7 @@ export class TitleComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     const runningChanges = changes['isRunning'];
-    // console.log(this.isRunning);
-    // console.log(runningChanges);
-    if(runningChanges.currentValue) {
-      console.log(runningChanges.currentValue);
-      // console.log(this.isRunning);
-      // this.isRunningOut.emit(this.isRunning);
-
-    }
+    this.isRunningOut.emit(this.isRunning);
   }
 
   ngOnInit() {
